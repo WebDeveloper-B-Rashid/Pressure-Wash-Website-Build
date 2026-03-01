@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProClean Pressure Washing & Sandblasting</title>
+    <meta name="description" content="Professional pressure washing and sandblasting services. Restore your home and property today.">
+    
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --primary-color: #004e92; /* Deep Professional Blue */
+            --primary-dark: #003366;
+            --accent-color: #00c6ff; /* Fresh Water Blue */
+            --highlight-color: #ccff00; /* Lime Green matching your worker's gear */
+            --text-dark: #333333;
+            --text-light: #666666;
+            --bg-light: #f9fbfd;
+            --white: #ffffff;
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --radius: 8px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; object-fit: cover; }
+
+        /* --- LAYOUT UTILITIES --- */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-padding { padding: 80px 0; }
+        .text-center { text-align: center; }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto 3rem auto;
+        }
+
+        /* --- BUTTONS --- */
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--highlight-color);
+            color: var(--primary-dark);
+        }
+
+        .btn-primary:hover {
+            background-color: #b3e600;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(204, 255, 0, 0.4);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--white);
+            color: var(--white);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--white);
+            color: var(--primary-dark);
+        }
+
+        /* --- HEADER & NAV --- */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo span { color: var(--accent-color); }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover { color: var(--accent-color); }
+
+        .social-icon-nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-dark);
+            font-weight: bold;
+        }
+
+        /* Mobile Menu */
+        .hamburger { display: none; cursor: pointer; font-size: 1.5rem; }
+
+        /* --- HERO SECTION --- */
+        #hero {
+            position: relative;
+            height: 90vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            /* Using the image of worker on ladder with yellow house */
+            background: linear-gradient(rgba(0, 51, 102, 0.6), rgba(0, 51, 102, 0.4)), 
+                        url('https://media.istockphoto.com/id/1372306644/photo/man-cleaning-the-terrace-with-high-pressure-cleaner.jpg?s=612x612&w=0&k=20&c=ebPyTmgMk45pTwtyF8xSj-RVX8shphgA_ZiINHSIeC4=');
+                        /* url('https://z-cdn-media.chatglm.cn/files/7305c5a2-d6eb-4525-a550-83db088a6067.jpg?auth_key=1871867399-08a22108a8a541b9929092e4fa56ab30-0-a30678d0b6a5d592ed2951a5cd4d3958'); */
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            margin-top: 80px; /* Offset for fixed header */
+        }
+
+        .hero-content {
+            max-width: 700px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        /* --- SERVICES SECTION --- */
+        #services { background-color: var(--bg-light); }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+            border-bottom: 4px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-bottom-color: var(--accent-color);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary-dark);
+        }
+
+        /* --- GALLERY (BEFORE & AFTER) --- */
+        #gallery { background-color: var(--white); }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            background: #fff;
+        }
+
+        .gallery-img-container {
+            position: relative;
+            width: 100%;
+            padding-top: 100%; /* Square aspect ratio container */
+            overflow: hidden;
+        }
+
+        .gallery-img-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-caption {
+            padding: 20px;
+            background: var(--white);
+            border-top: 1px solid #eee;
+        }
+
+        .gallery-label {
+            display: inline-block;
+            background: var(--primary-dark);
+            color: var(--highlight-color);
+            padding: 4px 10px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .gallery-caption h4 {
+            color: var(--primary-dark);
+            font-size: 1.1rem;
+        }
+
+        /* --- CONTACT SECTION --- */
+        #contact {
+            background-color: var(--primary-dark);
+            color: var(--white);
+        }
+
+        .contact-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+        }
+
+        .contact-info, .contact-form-container {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .contact-info h2 { font-size: 2rem; margin-bottom: 20px; }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .info-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--accent-color);
+        }
+
+        /* Simple Form Styling */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input, textarea, select {
+            padding: 15px;
+            border: none;
+            border-radius: var(--radius);
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        button[type="submit"] {
+            background-color: var(--highlight-color);
+            color: var(--primary-dark);
+            font-weight: bold;
+            padding: 15px;
+            border: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-size: 1rem;
+            text-transform: uppercase;
+            transition: var(--transition);
+        }
+
+        button[type="submit"]:hover { background-color: #b3e600; }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #002244;
+            color: #889bb0;
+            padding: 40px 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* --- RESPONSIVE MEDIA QUERIES --- */
+        @media (max-width: 768px) {
+            .hamburger { display: block; }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: var(--white);
+                flex-direction: column;
+                justify-content: center;
+                transition: 0.3s;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active { left: 0; }
+            
+            .hero-content h1 { font-size: 2.5rem; }
+            
+            .section-title { font-size: 2rem; }
+            
+            .contact-wrapper { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <!-- Replace with actual Image Logo if available -->
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--highlight-color)"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>
+                    PRO<span>CLEAN</span>
+                </div>
+                
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li>
+                        <a href="https://instagram.com" target="_blank" class="social-icon-nav">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                            Follow Us
+                        </a>
+                    </li>
+                    <li><a href="tel:+1234567890" class="btn btn-primary" style="padding: 8px 20px; font-size: 0.9rem;">Call Now</a></li>
+                </ul>
+
+                <div class="hamburger" id="hamburger">
+                    &#9776;
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="container hero-content">
+            <h1>Restore Your Property's Shine</h1>
+            <p>Professional pressure washing and sandblasting services for residential and commercial properties. See the difference today.</p>
+            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                <a href="#contact" class="btn btn-primary">Get a Free Quote</a>
+                <a href="#gallery" class="btn btn-outline">View Our Work</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section-padding">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title">Our Services</h2>
+                <p class="section-subtitle">We use industrial-grade equipment to remove years of dirt, grime, and old paint safely and efficiently.</p>
+            </div>
+
+            <div class="services-grid">
+                <!-- Service 1 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l8-4 8 4v14M8 21v-4h8v4"/></svg>
+                    </div>
+                    <h3>House Washing</h3>
+                    <p>Safe, low-pressure soft washing to remove algae, mold, and dirt from siding, stucco, and brick without damage.</p>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+                    </div>
+                    <h3>Concrete & Driveways</h3>
+                    <p>High-pressure surface cleaning for driveways, patios, and walkways. Remove oil stains, tire marks, and slippery moss.</p>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                    </div>
+                    <h3>Sandblasting</h3>
+                    <p>Heavy-duty abrasive blasting for stripping paint, rust, and industrial coatings from metal, wood, and masonry.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery / Before & After -->
+    <section id="gallery" class="section-padding">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title">Recent Projects</h2>
+                <p class="section-subtitle">Don't just take our word for it. See the dramatic transformations we achieve.</p>
+            </div>
+
+            <div class="gallery-grid">
+                
+                <!-- Project 1: Fence Restoration (Vertical Split) -->
+                <div class="gallery-item">
+                    <div class="gallery-img-container">
+                        <!-- Image: Old gray fence vs New light brown fence -->
+                         <img src="https://media.istockphoto.com/id/172925427/photo/refinish.jpg?s=612x612&w=0&k=20&c=atl2MUX5UtVyIMi8JGE9hpeSYDkKkCV-5MITCN_8HVs=" alt="">
+                        <!-- <img src="https://z-cdn-media.chatglm.cn/files/8b43dc25-17a3-441e-8d35-0903a777df10.jpg?auth_key=1871867399-72e6545b20fe4810a7deb8a3215f5188-0-418597b9a85a1d22bc2c680583cbde5e" alt="Fence Restoration Before and After"> -->
+                    </div>
+                    <div class="gallery-caption">
+                        <span class="gallery-label">Top: Before / Bottom: After</span>
+                        <h4>Backyard Wood Restoration</h4>
+                    </div>
+                </div>
+
+                <!-- Project 2: Deck/Fence (Vertical Split) -->
+                <div class="gallery-item">
+                    <div class="gallery-img-container">
+                        <!-- Image: Old gray fence vs New reddish brown fence -->
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgymQJGDBU56yr0mkeOpmq7d8vYqI2_8aflg&s" alt="">
+                        <!-- <img src="https://z-cdn-media.chatglm.cn/files/ef1827f0-674f-44eb-b794-61838e68c248.jpg?auth_key=1871867399-20ad40a2187c41f3ab9ba68aac2ad3e4-0-37601703c3241e991fa97bfb3125db95" alt="Deck Sanding and Staining"> -->
+                    </div>
+                    <div class="gallery-caption">
+                        <span class="gallery-label">Top: Before / Bottom: After</span>
+                        <h4>Wood Sanding & Refinishing</h4>
+                    </div>
+                </div>
+
+                <!-- Project 3: Action Shot -->
+                <div class="gallery-item">
+                    <div class="gallery-img-container">
+                        <!-- Image: Worker in neon green on ladder cleaning house -->
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaQdKerICdOaneqn0R_neuku5T4fd__5Oo4A&s" alt="">
+                        <!-- <img src="https://z-cdn-media.chatglm.cn/files/7305c5a2-d6eb-4525-a550-83db088a6067.jpg?auth_key=1871867399-08a22108a8a541b9929092e4fa56ab30-0-a30678d0b6a5d592ed2951a5cd4d3958" alt="House Washing in Progress"> -->
+                    </div>
+                    <div class="gallery-caption">
+                        <span class="gallery-label">In Action</span>
+                        <h4>Residential Exterior Wash</h4>
+                    </div>
+                </div>
+
+                <!-- Project 4: Concrete Detail -->
+                <div class="gallery-item">
+                    <div class="gallery-img-container">
+                        <!-- Image: Wet concrete with foam -->
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTef5pk_eJSI7dj1TgMypy8AxMGJ646NyQLYA&s" alt=""> 
+                        <!-- <img src="https://z-cdn-media.chatglm.cn/files/41a2a8d0-a97d-4ad2-b330-22918bde3f82.jpg?auth_key=1871867399-cd8cbaf212164346a3ed5103302ae945-0-98bfbbf707a1894393057903e6d2f1ba" alt="Concrete Cleaning Detail"> -->
+                    </div>
+                    <div class="gallery-caption">
+                        <span class="gallery-label">Detail</span>
+                        <h4>Expert Commercial Pressure Washing | Wow Wash Crew</h4>
+                    </div>
+                </div>
+
+                 <!-- Project 5: Concrete Detail -->
+                <div class="gallery-item">
+                    <div class="gallery-img-container">
+                        <!-- Image: Wet concrete with foam -->
+                        <img src="https://i0.wp.com/www.wowwashcrew.com/wp-content/uploads/2025/02/IMG_5090-scaled.jpg?fit=2560%2C1440&ssl=1" alt=""> 
+                        <!-- <img src="https://z-cdn-media.chatglm.cn/files/41a2a8d0-a97d-4ad2-b330-22918bde3f82.jpg?auth_key=1871867399-cd8cbaf212164346a3ed5103302ae945-0-98bfbbf707a1894393057903e6d2f1ba" alt="Concrete Cleaning Detail"> -->
+                    </div>
+                    <div class="gallery-caption">
+                        <span class="gallery-label">Wow Wash Crew</span>
+                        <h4>Expert Commercial Pressure Washing.</h4>
+                    </div>
+                </div>
+
+                 <!-- Project 5: Concrete Detail -->
+                <div class="gallery-item">
+                    <div class="gallery-img-container">
+                        <!-- Image: Wet concrete with foam -->
+                        <img src="https://i0.wp.com/www.wowwashcrew.com/wp-content/uploads/2022/11/Commercial-wash_Building-scaled.jpg?fit=1024%2C683&ssl=1" alt=""> 
+                        <!-- <img src="https://z-cdn-media.chatglm.cn/files/41a2a8d0-a97d-4ad2-b330-22918bde3f82.jpg?auth_key=1871867399-cd8cbaf212164346a3ed5103302ae945-0-98bfbbf707a1894393057903e6d2f1ba" alt="Concrete Cleaning Detail"> -->
+                    </div>
+                    <div class="gallery-caption">
+                        <span class="gallery-label">Wow Wash Crew</span>
+                        <h4>Expert Commercial Pressure Washing</h4>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-padding">
+        <div class="container">
+            <div class="contact-wrapper">
+                <!-- Contact Info -->
+                <div class="contact-info">
+                    <h2>Get In Touch</h2>
+                    <p style="margin-bottom: 30px; opacity: 0.9;">Ready to refresh your property? Contact us for a free estimate or to discuss your specific sandblasting needs.</p>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        </div>
+                        <span>(555) 123-4567</span>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                        </div>
+                        <span>Serving the Greater Metro Area</span>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        </div>
+                        <span>@YourInstagramHandle</span>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="contact-form-container">
+                    <form onsubmit="event.preventDefault(); alert('Thanks! This is a demo form. In a real setup, this would email you.');">
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="tel" placeholder="Phone Number" required>
+                        <select>
+                            <option value="">Select Service Needed</option>
+                            <option>House Washing</option>
+                            <option>Driveway/Concrete</option>
+                            <option>Sandblasting</option>
+                            <option>Other</option>
+                        </select>
+                        <textarea rows="4" placeholder="Project Details"></textarea>
+                        <button type="submit">Send Request</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 ProClean Pressure Washing. All Rights Reserved. | Developer B. Rashid. |</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Simple Mobile Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        const links = document.querySelectorAll('.nav-links li a');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when a link is clicked
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
